@@ -3,6 +3,22 @@
     <servlet>
         <servlet-name>ListaLivrosServlet</servlet-name>
         <servlet-class>Controle.ListaLivrosServlet</servlet-class>
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:derby://localhost:1527/biblioteca</param-value>
+        </init-param>
+        <init-param>
+            <param-name>usr</param-name>
+            <param-value>adm</param-value>
+        </init-param>
+        <init-param>
+            <param-name>senha</param-name>
+            <param-value>123</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListaLivrosServlet</servlet-name>

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +28,18 @@ import modelo.LivroDAO;
 public class ListaLivrosServlet extends HttpServlet {
 
     Connection con;
+    
+    ServletConfig config;
+    public void init (ServletConfig config) throws ServletException{
+    
+        this.config = config;
+    }
 
     public void conexao() {
-        String driver = "org.apache.derby.jdbc.ClientDriver";
-        String url = "jdbc:derby://localhost:1527/biblioteca";
-        String usr = "adm";
-        String senha = "123";
+        String driver = config.getInitParameter("driver");
+        String url = config.getInitParameter("url");
+        String usr = config.getInitParameter("usr");
+        String senha = config.getInitParameter("senha");
         try {
             Class.forName(driver);
             System.out.println("Driver carregado com sucesso");
