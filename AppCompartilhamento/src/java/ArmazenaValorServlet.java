@@ -35,6 +35,7 @@ public class ArmazenaValorServlet extends HttpServlet {
        ServletContext sc = getServletConfig().getServletContext();
        sc.setAttribute("dado", dado);
        sc.setAttribute("arrayValor", str);
+       response.sendRedirect("RecuperaDadoServlet");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
