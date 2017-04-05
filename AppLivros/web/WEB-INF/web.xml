@@ -4,13 +4,29 @@
         <servlet-name>ValidaSenhaServlet</servlet-name>
         <servlet-class>ValidaSenhaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListaLivrosServlet</servlet-name>
+        <servlet-class>ListaLivrosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidaSenhaServlet</servlet-name>
         <url-pattern>/ValidaSenhaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaLivrosServlet</servlet-name>
+        <url-pattern>/ListaLivrosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/trataErro500.html</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/trataErro404.html</location>
+    </error-page>
 </web-app>
