@@ -6,14 +6,6 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,49 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ra21503516
  */
-public class ValidaSenhaServlet extends HttpServlet {
+public class ListaLivrosServlet extends HttpServlet {
 
-    Connection con;
-    public void conexao(){
-        String driver ="org.apache.derby.jdbc.ClientDriver";
-        String url ="jdbc:derby://localhost:1527/biblioteca";
-        String usr ="adm";
-        String senha ="123";
-        //Carregando 0 driver do bando de dados
-        try {
-            Class.forName(driver);
-            System.out.println("Driver carregado com sucesso");
-        } catch (ClassNotFoundException ex) {
-           System.out.println("Erro no driver" + ex.getMessage());
-           return;
-        }
-        //Criando a conexão com o banco de dados
-        try {
-            con = DriverManager.getConnection(url, usr, senha);
-            System.out.println("Banco de dados pronto");
-        } catch (SQLException ex) {
-            System.out.println("Erro na conexão com banco" + ex.getMessage());
-        }
-        
-    }
-    
-    public boolean validaUsuario(String usr, String senha){
-        boolean rcode = false;
-        String comando = "SELECT COUNT(*) FROM USUARIO WHERE LOGIN='" + usr +"' AND SENHA='" + senha + "'"; 
-        Statement st;
-        ResultSet rs;
-        try {
-            st = con.createStatement();
-            rs = st.executeQuery(comando); 
-            rs.next();
-            if(rs.getInt(1) > 0){
-                rcode = true;
-            }
-        } catch (SQLException ex) {
-            System.out.println("Comando inválido!" + ex.getMessage());
-        }
-        return rcode;
-    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -78,35 +29,17 @@ public class ValidaSenhaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        if (con == null){
-            conexao();
-        }
-        
-        ServletContext sc = getServletConfig().getServletContext();
-        String usr = request.getParameter("tfUsuario");
-        String senha = request.getParameter("jpSenha");
-        if (validaUsuario(usr,senha)) {
-            sc.setAttribute("conexao", con);
-          response.sendRedirect("ListaLivrosServlet");
-        } else {
-        
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ValidaSenhaServlet</title>");            
+            out.println("<title>Servlet ListaLivrosServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<form name'f2' action='index.html'>");
-            out.println("<h2>Usuário/Senha inválidos " + request.getContextPath() + "</h2>");
-            out.println("<input type='submit' value='Tela de login'>");
-            out.println("</form>");
+            out.println("<h1>Servlet ListaLivrosServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            }
         }
     }
 
@@ -148,5 +81,5 @@ public class ValidaSenhaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }
