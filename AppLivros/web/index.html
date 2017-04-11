@@ -6,29 +6,28 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Tela de Login</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            #msg{
-                color: red;
+            #msg {
+                color: #FF0000;
             }
         </style>
         <script>
             function verificaCampos() {
-
                 var objUsr = document.getElementById("usr");
                 var objSenha = document.getElementById("senha");
                 var objMsg = document.getElementById("msg");
-                if (objUsr.value == '') {
-                   objMsg.innerHTML = "Usuário deve ser preenchido"
-                   objUsr.focus();
-                   return;
+                if (objUsr.value == ''){
+                    objMsg.innerHTML = "usuário deve ser preenchido";
+                    objUsr.focus();
+                    return;
                 }
-                 if (objSenha.value == '') {
-                   objMsg.innerHTML = "Senha deve ser preenchido"
-                   objSenha.focus();
-                   return;
+                if (objSenha.value == ''){
+                    objMsg.innerHTML = "senha deve ser preenchida";
+                    objSenha.focus();
+                    return;
                 }
                 document.forms['f1'].action = "ValidaSenhaServlet";
                 document.forms['f1'].submit();
@@ -36,21 +35,24 @@ and open the template in the editor.
         </script>
     </head>
     <body>
-        <h2>VALIDAÇÃO DE USUÁRIO</h2>
-        <form name="f1" action="" method="post">
-            <table>
-                <tr>
-                    <td><label> Usuario: </label></td>
-                    <td><input type="text" name="tfUsuario" id="usr" size="20" /></td>
-                </tr>
-                <tr>
-                    <td><label> Senha: </label></td>
-                    <td> <input type="password" name="jpSenha" id="senha" size="20" /></td>
-                </tr>
-                <tr>
-                    <td><input type="button" value="Executar" name="btExecutar" onclick="verificaCampos();"/></td>
-                    <td><input type="reset" value="Limpar" name="btLimpar"  /></td>
-                </tr>
+        <form name="f1" action="" method="POST">
+            <h1>VALIDAÇÃO DE USUÁRIO</h1>
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>Usuário:</td>
+                        <td><input type="text" name="tfUsuario" id="usr" size="20" /></td>
+                    </tr>
+                    <tr>
+                        <td>Senha:</td>
+                        <td><input type="password" name="jpSenha" id="senha" size="20" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="Limpar" name="btLimpar" /></td>
+                        <td><input type="button" value="Executar" name="btExecutar"
+                                   onclick="verificaCampos();"/></td>
+                    </tr>
+                </tbody>
             </table>
             <hr>
             <div id="msg"></div>
