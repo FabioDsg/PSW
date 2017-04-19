@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function verificaCampos() {
+                var objCod1 = document.getElementById("Cod1");
+                var objQtd1 = document.getElementById("Qtd1");
+                var objCod2 = document.getElementById("Cod2");
+                var objQtd2 = document.getElementById("Qtd2");
+                var objMsg = document.getElementById("msg");
+                if (objCod1.value == ''){
+                    objMsg.innerHTML = "Código do produto deve ser preenchido";
+                    objCod1.focus();
+                    return;
+                }
+                if (objQtd1.value == ''){
+                    objMsg.innerHTML = "A quantidade deve ser preenchida";
+                    objQtd1.focus();
+                    return;
+                }
+                if (objCod2.value == ''){
+                    objMsg.innerHTML = "Código do produto 2 deve ser preenchido";
+                    objCod2.focus();
+                    return;
+                }
+                if (objQtd2.value == ''){
+                    objMsg.innerHTML = "A quantidade do produto 2 deve ser preenchida";
+                    objQtd2.focus();
+                    return;
+                }
+                document.forms['f1'].action = "CalculaCompraServlet";
+                document.forms['f1'].submit();
+            }
+        </script>
+    </head>
+    <body>
+        <form name="f1" action="" method="POST">
+            <h1>Calcula Compra</h1>
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td>Cód Produto 1:</td>
+                        <td><input type="text" name="tfCodProduto1" id="Cod1" size="20" /></td>
+                    </tr>
+                    <tr>
+                        <td>Qtd Produto 1:</td>
+                        <td><input type="text" name="tfQtdProduto1" id="Qtd1" size="20" /></td>
+                    </tr>
+                     <tr>
+                        <td>Cód Produto 2:</td>
+                        <td><input type="text" name="tfCodProduto1" id="Cod2" size="20" /></td>
+                    </tr>
+                    <tr>
+                        <td>Qtd Produto 2:</td>
+                        <td><input type="text" name="tfQtdProduto1" id="Qtd2" size="20" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="Limpar" name="btLimpar" /></td>
+                        <td><input type="button" value="Calcular" name="btExecutar"
+                                   onclick="verificaCampos();"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <div id="msg"></div>
+        </form> 
+    </body>
+</html>
